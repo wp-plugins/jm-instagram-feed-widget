@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Text in echo
+#: widget.class.php
+msgid "This widget adds your Instagram Feed to your website."
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Very Aggressive (refresh only once a day)"
+msgstr ""
+
+#. Text in function
+#: widget.class.php
+msgid "Aggressive (refresh only 2 times per day)"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Normal (refresh every 4 hours)"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Low (refresh every 30 min)"
+msgstr ""
+
+#. Text in function
+#: widget.class.php
+msgid "Set cache ( mininum : 30 min )"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "How many pics do you want to show?"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter access token"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter user ID"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter your user name (Instagram account)"
+msgstr ""
+
+#. Text in echo
+#: widget.class.php
+msgid "Widget Title"
+msgstr ""

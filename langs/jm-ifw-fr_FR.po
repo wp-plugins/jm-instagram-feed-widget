@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: JM Instagram Feed Widget\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: jmlapam <contact@tweetpress.fr>\n"
+"Language-Team: jmlapam <contact@tweetpress.fr>\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_FR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. Text in echo
+#: widget.class.php
+msgid "This widget adds your Instagram Feed to your website."
+msgstr ""
+"Ce widget ajoute vos récentes photos pubiées sur Instagram sur votre site."
+
+#. Text in echo
+#: widget.class.php
+msgid "Very Aggressive (refresh only once a day)"
+msgstr "Très fort (se met à jour 1 fois par jour)"
+
+#. Text in function
+#: widget.class.php
+msgid "Aggressive (refresh only 2 times per day)"
+msgstr "Fort (se met à jioru 2 fois par jour)"
+
+#. Text in echo
+#: widget.class.php
+msgid "Normal (refresh every 4 hours)"
+msgstr "Normal ( se met à jour toutes les 4h)"
+
+#. Text in echo
+#: widget.class.php
+msgid "Low (refresh every 30 min)"
+msgstr "Faible ( mise à jour toutes les demi-heures)"
+
+#. Text in function
+#: widget.class.php
+msgid "Set cache ( mininum : 30 min )"
+msgstr "Définir la durée du cache ( minimum: 30 min)"
+
+#. Text in echo
+#: widget.class.php
+msgid "How many pics do you want to show?"
+msgstr "Combien de photos voulez-vous afficher?"
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter access token"
+msgstr "Entrez votre access token"
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter user ID"
+msgstr "Entrez votre user ID"
+
+#. Text in echo
+#: widget.class.php
+msgid "Enter your user name (Instagram account)"
+msgstr "Entrez votre nom d'utilisateur (compte Instagram)"
+
+#. Text in echo
+#: widget.class.php
+msgid "Widget Title"
+msgstr "Titre du widget"
