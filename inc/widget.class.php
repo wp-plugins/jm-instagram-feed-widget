@@ -16,7 +16,7 @@ class JM_IFW_Widget extends WP_Widget {
 		
 		$widget_ops = array('classname' => 'ifw-widget', 'description' => __( 'This widget adds your Instagram Feed to your website.', $this->textdomain ) );
 		$control_ops = array();
-		parent::WP_Widget( 'ifw', __('Instragram Feed Widget', $this->textdomain ) , $widget_ops, $control_ops );
+		parent::WP_Widget( 'ifw', __('Instagram Feed Widget', $this->textdomain ) , $widget_ops, $control_ops );
 		
 		
 		add_action('wp_enqueue_scripts', array( $this, 'basic_styles') );
