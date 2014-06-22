@@ -37,9 +37,6 @@ You have full control ! No email registration, no third-party service (except In
 6. Copy past these credentials in the widget settings to get your latest pics in WordPress
 7. Enjoy ^^
 
-
-Don't have time for this? Use the generator in option page ^^
-
 == Changelog ==
 
 = 1.0 =
