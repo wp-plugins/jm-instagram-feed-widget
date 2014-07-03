@@ -5,7 +5,7 @@ Plugin URI: http://www.tweetpress.fr
 Description: Meant to add a widget with your Instagram pics
 Author: Julien Maury
 Author URI: http://www.julien-maury.com
-Version: 1.0
+Version: 1.1
 Text Domain: jm-sqrw
 Domain Path: /langs/
 License: GPL2++
@@ -29,9 +29,8 @@ defined('ABSPATH')
 	or die('No !');
 
 // Constants
-define( 'IFW_VERSION', 	'1.0' );
+define( 'IFW_VERSION', 	'1.1' );
 define( 'IFW_DIR', 		plugin_dir_path( __FILE__ ));
-define( 'IFW_DIR_LIB', 	trailingslashit(plugin_dir_path( __FILE__ ) .'/inc/lib'));
 define( 'IFW_URL', 		plugin_dir_url( __FILE__ ));
 define( 'IFW_CSS_URL', 	trailingslashit(IFW_URL.'/css'));
 define( 'IFW_LANG_DIR', dirname(plugin_basename(__FILE__)) . '/langs/' );

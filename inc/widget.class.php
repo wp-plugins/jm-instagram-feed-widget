@@ -17,8 +17,7 @@ class JM_IFW_Widget extends WP_Widget {
 		$widget_ops = array('classname' => 'ifw-widget', 'description' => __( 'This widget adds your Instagram Feed to your website.', $this->textdomain ) );
 		$control_ops = array();
 		parent::WP_Widget( 'ifw', __('Instagram Feed Widget', $this->textdomain ) , $widget_ops, $control_ops );
-		
-		
+
 		add_action('wp_enqueue_scripts', array( $this, 'basic_styles') );
 		
 	}
@@ -142,7 +141,7 @@ class JM_IFW_Widget extends WP_Widget {
 		$instance['number'] 		= (int) $new_instance['number'];
 		$instance['cache'] 			= (int) $new_instance['cache'];
 		
-		$this->delete_cache();
+		$this->delete_cache($instance['user_name']);
 		
 		return $instance;
 		
@@ -159,7 +158,7 @@ class JM_IFW_Widget extends WP_Widget {
 		echo '<!-- JM Instagram Feed Widget '.IFW_VERSION.' -->'."\n";
 		echo '<div class="widget-text jm-ifw">';
 		
-		$cached = get_site_transient( '_instagram_feed' );
+		$cached = get_site_transient( substr(md5($instance['user_name']), 0, 10).'_instagram_feed' );
 		
 		// Check if code exist in cache.
 		if( $cached === false ) {
@@ -188,7 +187,7 @@ class JM_IFW_Widget extends WP_Widget {
 			ob_end_clean();
 
 			// Add to cache
-			set_site_transient( '_instagram_feed', $cached, $time_cache );
+			set_site_transient( substr(md5($instance['user_name']), 0, 10).'_instagram_feed', $cached, $time_cache );
 			
 		}
 		
@@ -204,43 +203,50 @@ class JM_IFW_Widget extends WP_Widget {
 	private function get_pics($user_id, $access_token, $num_items, $user_name){
 
 		// use the appropriate APIs to make the call
-		$call 	= wp_remote_retrieve_body(wp_remote_get("https://api.instagram.com/v1/users/{$user_id}/media/recent?access_token={$access_token}", array("timeout" => 120) ) );
-		$result = json_decode($call);
+		$call 	= wp_remote_get("https://api.instagram.com/v1/users/{$user_id}/media/recent?access_token={$access_token}", array("timeout" => 120) ) ;
+		$result = json_decode(wp_remote_retrieve_body($call));
 		
 		$output = '';
 		
-		// User datas
-		foreach ( (array) $result->data as $info ) {
-			
-			$output .= '<a href="http://instagram.com/'.$user_name.'" title="'.esc_attr__('See my profile on Instagram', $this->textdomain).'"><img width="'.apply_filters('instagram_img_size', 32).'" height="'.apply_filters('instagram_img_size', 32).'" src="'.$info->user->profile_picture.'"/> '.$info->user->username.'</a>';
-			break;
-		}
+		if( is_object($result) && property_exists($result, 'data') ) {
 		
-		
-		$output .= '<ul class="'.apply_filters('instagram_feed_container_class', 'instagram-feed-container').'">';
-		
-		// let's do it differently becaus this time we may need more than 1 element
-		$i   	= 1;
-		foreach ( (array) $result->data as $info ) {
-			
-			// User pics
-			
-			if ( $info->type == 'image' ) {
+			// User datas
+			foreach ( (array) $result->data as $info ) {
 				
-				$output .= '<li class="'.apply_filters('instagram_list_items_class', 'instagram-list-items').'"><a href="'. $info->link.'"><figure><img class="'.apply_filters('instagram_img_class', 'instagram-img').'" src="'.$info->images->standard_resolution->url.'"><figcaption>'.$info->caption.'</figcaption></figure></a></li>';	
+				$output .= '<a href="http://instagram.com/'.$user_name.'" title="'.esc_attr__('See my profile on Instagram', $this->textdomain).'"><img width="'.apply_filters('instagram_img_size', 32).'" height="'.apply_filters('instagram_img_size', 32).'" src="'.$info->user->profile_picture.'"/> '.$info->user->username.'</a>';
+				break;
+			}
+			
+			
+			$output .= '<ul class="'.apply_filters('instagram_feed_container_class', 'instagram-feed-container').'">';
+			
+			// let's do it differently becaus this time we may need more than 1 element
+			$i   	= 1;
+			foreach ( (array) $result->data as $info ) {
 				
-				$i++;
-				if ($i > $num_items) break;// this could have been done in a more accurate way with the parameter count of the GET /users/user-id/media/recent
+				// User pics
+				
+				if ( $info->type == 'image' ) {
+					
+					$output .= '<li class="'.apply_filters('instagram_list_items_class', 'instagram-list-items').'"><a href="'. $info->link.'"><figure><img class="'.apply_filters('instagram_img_class', 'instagram-img').'" src="'.$info->images->standard_resolution->url.'"><figcaption>'.$info->caption.'</figcaption></figure></a></li>';	
+					
+					$i++;
+					if ($i > $num_items) break;// this could have been done in a more accurate way with the parameter count of the GET /users/user-id/media/recent
+					
+				}
 				
 			}
 			
+			$output .= '</ul>';
+			
+			$badge   = '<a href="http://instagram.com/'.$user_name.'?ref=badge" class="ig-b- ig-b-v-24"><img src="'.esc_url('//badges.instagram.com/static/images/ig-badge-view-24.png').'" alt="Instagram" /></a>';
+			
+			$output .= apply_filters('instagram_show_badge', $badge);
+			
+		} else {
+		
+			$output .= __('This Instagram Feed is broken ! Check your settings please.','jm-ifw');
 		}
-		
-		$output .= '</ul>';
-		
-		$badge   = '<a href="http://instagram.com/'.$user_name.'?ref=badge" class="ig-b- ig-b-v-24"><img src="'.esc_url('//badges.instagram.com/static/images/ig-badge-view-24.png').'" alt="Instagram" /></a>';
-		
-		$output .= apply_filters('instagram_show_badge', $badge);
 		
 		return $output;
 		
@@ -257,9 +263,9 @@ class JM_IFW_Widget extends WP_Widget {
 	
 	
 	// when cache need to be deleted
-	private function delete_cache() {
+	private function delete_cache($user_name) {
 		
-		delete_site_transient( '_instagram_feed' );
+		delete_site_transient( substr(md5($user_name), 0, 10).'_instagram_feed' );
 		
 	}
 
