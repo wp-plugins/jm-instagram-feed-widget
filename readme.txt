@@ -39,10 +39,13 @@ You have full control ! No email registration, no third-party service (except In
 
 == Changelog ==
 
+= 1.2 =
+* 05 July 2014
+* delete substr() in transient name to avoid potential collisions
+
 = 1.1 =
 * 03 July 2014
 * add checking before using data in foreach
-* allow multiple use (different users)
 
 = 1.0 =
 * 19 June 2014

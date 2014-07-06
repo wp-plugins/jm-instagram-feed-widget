@@ -158,7 +158,7 @@ class JM_IFW_Widget extends WP_Widget {
 		echo '<!-- JM Instagram Feed Widget '.IFW_VERSION.' -->'."\n";
 		echo '<div class="widget-text jm-ifw">';
 		
-		$cached = get_site_transient( substr(md5($instance['user_name']), 0, 10).'_instagram_feed' );
+		$cached = get_site_transient( md5($instance['user_name']) );
 		
 		// Check if code exist in cache.
 		if( $cached === false ) {
@@ -187,7 +187,7 @@ class JM_IFW_Widget extends WP_Widget {
 			ob_end_clean();
 
 			// Add to cache
-			set_site_transient( substr(md5($instance['user_name']), 0, 10).'_instagram_feed', $cached, $time_cache );
+			set_site_transient( md5($instance['user_name']), $cached, $time_cache );
 			
 		}
 		
@@ -265,7 +265,7 @@ class JM_IFW_Widget extends WP_Widget {
 	// when cache need to be deleted
 	private function delete_cache($user_name) {
 		
-		delete_site_transient( substr(md5($user_name), 0, 10).'_instagram_feed' );
+		delete_site_transient( md5($user_name) );
 		
 	}
 
