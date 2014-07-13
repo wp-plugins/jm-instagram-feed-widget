@@ -1,6 +1,6 @@
 === JM Instagram Feed Widget ===
 Contributors: jmlapam
-Donate Link: http://www.amazon.fr/registry/wishlist/1J90JNIHBBXL8
+Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7BJYYT486HEH6
 Tags: widget, instagram, image, feed, media
 Tested up to: 3.9.1
 License: GPLv2 or later
