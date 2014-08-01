@@ -23,7 +23,7 @@ You have full control ! No email registration, no third-party service (except In
 2. Activate the plugin through the Plugins menu in WordPress
 3. A new widget will appear, just grab it and define your settings
 4. Use the customizer to set it the first time
-5. Use the generator in option page to get your tokens or follow instructions in FAQ
+5. Follow instructions in FAQ
 
 == Frequently asked questions ==
 
